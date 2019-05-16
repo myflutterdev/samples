@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:model_shopper/models/cart.dart';
+import 'package:model_shopper/models/src/item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class MyCart extends StatelessWidget {
@@ -52,13 +53,24 @@ class _CartList extends StatelessWidget {
             // Take the items in the current cart.
             children: cart.items
                 // For each of them, create a Text widget.
-                .map((item) => Text(
-                      '· ${item.name}',
-                      style: Theme.of(context).textTheme.title,
-                    ))
+                .map((item) => _buildItemWidget(item, context))
                 // Then make a list of these widgets.
                 .toList(),
           ),
+    );
+  }
+
+  Widget _buildItemWidget(Item item, BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+            var cart = ScopedModel.of<CartModel>(context);
+            var index = cart.items.indexOf(item);
+            cart.remove(index);
+          },
+      child: Text(
+        '· ${item.name} -id:${item.id}',
+        style: Theme.of(context).textTheme.title,
+      ),
     );
   }
 }

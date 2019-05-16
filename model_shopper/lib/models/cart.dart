@@ -11,7 +11,7 @@ class CartModel extends Model {
   UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
 
   /// The current total price of all items (assuming all items cost $42).
-  int get totalPrice => _items.length * 42;
+  int get totalPrice => _items.length * 1;
 
   /// Adds [item] to cart. This is the only way to modify the cart from outside.
   void add(Item item) {
@@ -24,5 +24,10 @@ class CartModel extends Model {
   /// Remove all items in the cart.
   void clear() {
     _items.clear();
+  }
+
+  void remove(int index) {
+    _items.removeAt(index);
+    notifyListeners();
   }
 }

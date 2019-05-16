@@ -40,7 +40,9 @@ class MyCatalog extends StatelessWidget {
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                (context, index) => MyListItem(index)),
+                (context, index) => MyListItem(index),
+                // childCount: 10
+                ),
           ),
         ],
       ),
