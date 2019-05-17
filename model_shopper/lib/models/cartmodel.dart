@@ -16,6 +16,7 @@ class CartModel extends Model {
   /// Adds [item] to cart. This is the only way to modify the cart from outside.
   void add(Item item) {
     _items.add(item);
+    _items.sort((a, b) => a.id.compareTo(b.id));
     // This line tells [Model] that it should rebuild the widgets that
     // depend on it.
     notifyListeners();
@@ -24,6 +25,7 @@ class CartModel extends Model {
   /// Remove all items in the cart.
   void clear() {
     _items.clear();
+    notifyListeners();
   }
 
   void remove(int index) {

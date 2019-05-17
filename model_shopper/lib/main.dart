@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_shopper/models/cart.dart';
+import 'package:model_shopper/models/cartmodel.dart';
 import 'package:model_shopper/screens/cart.dart';
 import 'package:model_shopper/screens/catalog.dart';
 import 'package:model_shopper/screens/login.dart';
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        // fontFamily: 'Corben',
         primarySwatch: Colors.yellow,
         textTheme: TextTheme(
           display4: TextStyle(

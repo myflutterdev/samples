@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:model_shopper/models/cart.dart';
+import 'package:model_shopper/models/cartmodel.dart';
 import 'package:scoped_model/scoped_model.dart';
+
+import 'package:open_native/open_native.dart';
 
 /// This is the login screen.
 ///
@@ -9,7 +11,26 @@ import 'package:scoped_model/scoped_model.dart';
 /// Sooner or later, you will want to implement actual authorization here.
 /// At that time, you would create a new user model and share it
 /// across screens that need it -- the same way we use cart model now.
-class MyLoginScreen extends StatelessWidget {
+class MyLoginScreen extends StatefulWidget {
+  @override
+  _MyLoginScreenState createState() => _MyLoginScreenState();
+}
+
+class _MyLoginScreenState extends State<MyLoginScreen> {
+  var _platformVer;
+  @override
+  void initState() {
+    super.initState();
+    _initPlatformInfo();
+  }
+
+  _initPlatformInfo() async {
+    String ver = await OpenNative.platformVersion;
+    setState(() {
+      _platformVer = ver;
+    });
+  }
+
   /// This method is called when the user taps "Enter".
   void onLoginSubmit(BuildContext context) {
     // Here the UI doesn't depend on the state of the model. We only need
@@ -19,7 +40,7 @@ class MyLoginScreen extends StatelessWidget {
 
     // Now that we have reference to the cart, we can clear it, for example.
     cart.clear();
-
+    
     // Navigate to the catalog screen.
     Navigator.pushReplacementNamed(context, '/catalog');
   }
@@ -46,6 +67,10 @@ class MyLoginScreen extends StatelessWidget {
                 onPressed: () => onLoginSubmit(context),
                 color: Colors.yellow,
                 child: Text('ENTER'),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text('$_platformVer'),
               ),
             ],
           ),

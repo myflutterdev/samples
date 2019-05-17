@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_shopper/models/cart.dart';
+import 'package:model_shopper/models/cartmodel.dart';
 import 'package:model_shopper/models/src/item.dart';
 import 'package:scoped_model/scoped_model.dart';
 

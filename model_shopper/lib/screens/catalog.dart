@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_shopper/models/cart.dart';
+import 'package:model_shopper/models/cartmodel.dart';
 import 'package:model_shopper/models/src/item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -40,12 +40,25 @@ class MyCatalog extends StatelessWidget {
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                (context, index) => MyListItem(index),
-                // childCount: 10
-                ),
+              (context, index) => MyListItem(index),
+              // childCount: 10
+            ),
           ),
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){Navigator.pushReplacementNamed(context, '/');},
+      //   child: Center(
+      //     child: Column(
+      //       children: <Widget>[
+      //         Padding(padding: EdgeInsets.only(top: 10),),
+      //         Icon(Icons.exit_to_app),
+      //         Text('Exit'),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -115,10 +128,11 @@ class _AddButton extends StatelessWidget {
             // on the cart model.
             onPressed: cart.items.contains(item) ? null : () => cart.add(item),
             splashColor: Colors.yellow,
-            // Similarly, we change the content of the button according
+            // Simqilarly, we change the content of the button according
             // to the state of the cart.
             child: cart.items.contains(item) ? Icon(Icons.check) : Text('ADD'),
           ),
+      child: Text('data'),
     );
   }
 }
